@@ -21,7 +21,7 @@ const Books = () => {
 
   console.log(books);
 
-  const handleDelete = async (id) => {
+  const delete_handler = async (id) => {
     try {
       await axios.delete(`http://localhost:8800/books/${id}`);
       window.location.reload()
@@ -40,7 +40,7 @@ const Books = () => {
             <h2>{book.title}</h2>
             <p>{book.desc}</p>
             <span>${book.price}</span>
-            <button className="delete" onClick={() => handleDelete(book.id)}>Remove</button>
+            <button className="delete" onClick={() => delete_handler(book.id)}>Remove</button>
             <button className="update">
               <Link
                 to={`/update/${book.id}`}
