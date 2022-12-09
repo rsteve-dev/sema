@@ -4,7 +4,7 @@ import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
 const AddAsset = () => {
-  const [book, setBook] = useState({
+  const [Asset, setAsset] = useState({
     title: "",
     desc: "",
     price: null,
@@ -15,13 +15,13 @@ const AddAsset = () => {
   const navigate = useNavigate();
 
   const handleChange = (e) => {
-    setBook((prev) => ({ ...prev, [e.target.name]: e.target.value }));
+    setAsset((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   };
 
   const handleClick = async (e) => {
     e.preventDefault();
     try {
-      await axios.post("http://localhost:8800/books", book);
+      await axios.post("http://localhost:8800/Assets", Asset);
       navigate("/");
     } catch (err) {
       console.log(err);
@@ -31,35 +31,35 @@ const AddAsset = () => {
 
   return (
     <div className="form">
-      <h1>Add New Book</h1>
+      <h1>Add New Asset</h1>
       <input
         type="text"
-        placeholder="Book title"
+        placeholder="Asset name"
         name="title"
         onChange={handleChange}
       />
       <textarea
         rows={5}
         type="text"
-        placeholder="Book desc"
+        placeholder="Asset desciption"
         name="desc"
         onChange={handleChange}
       />
       <input
         type="number"
-        placeholder="Book price"
+        placeholder="Asset price-tag"
         name="price"
         onChange={handleChange}
       />
       <input
         type="text"
-        placeholder="Book cover"
+        placeholder="Asset cover-img"
         name="cover"
         onChange={handleChange}
       />
       <button onClick={handleClick}>Add</button>
       {error && "Something went wrong!"}
-      <Link to="/">See all books</Link>
+      <Link to="/">See all Assets</Link>
     </div>
   );
 };

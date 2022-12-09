@@ -3,8 +3,8 @@ import axios from "axios";
 import React, { useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 
-const UpdateBook = () => {
-  const [book, setBook] = useState({
+const UpdateAsset = () => {
+  const [Asset, setAsset] = useState({
     title: "",
     desc: "",
     price: null,
@@ -15,17 +15,17 @@ const UpdateBook = () => {
   const location = useLocation();
   const navigate = useNavigate();
 
-  const bookId = location.pathname.split("/")[2];
+  const AssetId = location.pathname.split("/")[2];
 
   const handleChange = (e) => {
-    setBook((prev) => ({ ...prev, [e.target.name]: e.target.value }));
+    setAsset((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   };
 
   const handleClick = async (e) => {
     e.preventDefault();
 
     try {
-      await axios.put(`http://localhost:8800/books/${bookId}`, book);
+      await axios.put(`http://localhost:8800/Assets/${AssetId}`, Asset);
       navigate("/");
     } catch (err) {
       console.log(err);
@@ -35,37 +35,37 @@ const UpdateBook = () => {
 
   return (
     <div className="form">
-      <h1>Update the Book</h1>
+      <h1>Update the Asset</h1>
       <input
         type="text"
-        placeholder="Book title"
+        placeholder="Asset Name"
         name="title"
         onChange={handleChange}
       />
       <textarea
         rows={5}
         type="text"
-        placeholder="Book desc"
+        placeholder="Asset description"
         name="desc"
         onChange={handleChange}
       />
       <input
         type="number"
-        placeholder="Book price"
+        placeholder="Asset price-tag"
         name="price"
         onChange={handleChange}
       />
       <input
         type="text"
-        placeholder="Book cover"
+        placeholder="Asset cover"
         name="cover"
         onChange={handleChange}
       />
       <button onClick={handleClick}>Update</button>
       {error && "Something went wrong!"}
-      <Link to="/">See all books</Link>
+      <Link to="/">See all Assets</Link>
     </div>
   );
 };
 
-export default UpdateBook
+export default UpdateAsset
