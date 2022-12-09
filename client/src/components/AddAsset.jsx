@@ -3,7 +3,7 @@ import React from "react";
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
-const AddBook = () => {
+const AddAsset = () => {
   const [book, setBook] = useState({
     title: "",
     desc: "",
@@ -64,4 +64,4 @@ const AddBook = () => {
   );
 };
 
-export default AddBook
+export default AddAsset

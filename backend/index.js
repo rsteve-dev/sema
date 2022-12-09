@@ -1,6 +1,6 @@
 import express from 'express';
 import mysql from "mysql";
-import cors from 'cors';
+import cors from "cors";
 
 
 const app=express();
@@ -12,8 +12,8 @@ const db=mysql.createConnection(
     {
         host:"localhost",
         user:"root@localhost",
-        password:"Nairobi@@!",
-        database:"mybookstore"
+        password:"",
+        database:"AssetStore"
     }
 )
 
@@ -21,16 +21,16 @@ app.get("/",(req,res)=>{
     res.json("hello you just pinged the backend");
 })
 
-app.get("/books",(req,res)=>{
-    const qr="SELECT * FROM mybookstore.books";
+app.get("/assets",(req,res)=>{
+    const qr="SELECT * FROM AssetStore.assets";
     db.query(qr,(err,data)=>{
-        //res.json("retrieving books!!")
+        //res.json("retrieving assets!!")
         (err)?res.json(err):res.json(data);
     })
 })
-//ENTER BOOK INTO BOOKS TABLE
-app.post("/books",(req,res)=>{
-    const qr="INSERT INTO mybookstore.books (`title`,`desc`,`cover` VALUES(?) "
+//ENTER asset INTO assets TABLE
+app.post("/assets",(req,res)=>{
+    const qr="INSERT INTO Assetstore.assets (`title`,`desc`,`cover` VALUES(?) "
     const req_vals = [
     req.body.title,
     req.body.desc,
@@ -39,24 +39,24 @@ app.post("/books",(req,res)=>{
   ];
 
     db.query(qr,[req_vals],(err,data)=>{
-         (err)?res.json(err):res.json("successfully added to our bookstore");
+         (err)?res.json(err):res.json("successfully added to our assetstore");
     })
 })
-//delete book from bookstore
-app.delete("/books/:id", (req, res) => {
-  const book_Id = req.params.id;
-  const qr = " DELETE FROM books WHERE id = ? ";
+//delete asset from assetstore
+app.delete("/assets/:id", (req, res) => {
+  const asset_Id = req.params.id;
+  const qr = " DELETE FROM assets WHERE id = ? ";
 
-  db.query(qr, [book_Id], (err, data) => {
+  db.query(qr, [asset_Id], (err, data) => {
     if (err) return res.send(err);
     return res.json(data);
   });
 });
 
 //put data
-app.put("/books/:id", (req, res) => {
-  const bookId = req.params.id;
-  const q = "UPDATE books SET `title`= ?, `desc`= ?, `price`= ?, `cover`= ? WHERE id = ?";
+app.put("/assets/:id", (req, res) => {
+  const assetId = req.params.id;
+  const q = "UPDATE assets SET `title`= ?, `desc`= ?, `price`= ?, `cover`= ? WHERE id = ?";
 
   const values = [
     req.body.title,
@@ -65,7 +65,7 @@ app.put("/books/:id", (req, res) => {
     req.body.cover,
   ];
 
-  db.query(q, [...values,bookId], (err, data) => {
+  db.query(q, [...values,assetId], (err, data) => {
     if (err) return res.send(err);
     return res.json(data);
   });

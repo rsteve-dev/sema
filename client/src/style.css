@@ -26,38 +26,38 @@ code {
   margin-top: 20px;
   cursor: pointer;
   border: none;
-  background-color: teal;
+  background-color: grey;
   color: white;
   font-weight: bold;
 }
 .app h1 {
   margin-bottom: 50px;
 }
-.app .books {
+.app .Assets {
   display: flex;
 }
-.app .books .book {
+.app .Assets .Asset {
   flex: 1;
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 10px;
 }
-.app .books .book img {
+.app .Assets .Asset img {
   width: 200px;
   height: 300px;
   object-fit: cover;
 }
-.app .books .book button {
+.app .Assets .Asset button {
   padding: 3px 6px;
   background-color: white;
   cursor: pointer;
 }
-.app .books .book .delete {
+.app .Assets .Asset .delete {
   border: 1px solid #f5bfbf;
   color: #f26464;
 }
-.app .books .book .update {
+.app .Assets .Asset .update {
   border: 1px solid #ccccf3;
   color: #8b8bea;
 }

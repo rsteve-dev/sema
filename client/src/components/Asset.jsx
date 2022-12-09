@@ -3,27 +3,27 @@ import { useEffect } from "react";
 import { useState } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
-const Books = () => {
+const Assets = () => {
 
-     const [books, setBooks] = useState([]);
+     const [Assets, setAssets] = useState([]);
 
   useEffect(() => {
-    const fetchAllBooks = async () => {
+    const fetchAllAssets = async () => {
       try {
-        const res = await axios.get("http://localhost:8800/books");
-        setBooks(res.data);
+        const res = await axios.get("http://localhost:8800/Assets");
+        setAssets(res.data);
       } catch (err) {
         console.log(err);
       }
     };
-    fetchAllBooks();
+    fetchAllAssets();
   }, []);
 
-  console.log(books);
+  console.log(Assets);
 
   const delete_handler = async (id) => {
     try {
-      await axios.delete(`http://localhost:8800/books/${id}`);
+      await axios.delete(`http://localhost:8800/Assets/${id}`);
       window.location.reload()
     } catch (err) {
       console.log(err);
@@ -32,18 +32,18 @@ const Books = () => {
 
   return (
     <div>
-      <h1>Soma books collection</h1>
-      <div className="books">
-        {books.map((book) => (
-          <div key={book.id} className="book">
-            <img src={book.cover} alt="" />
-            <h2>{book.title}</h2>
-            <p>{book.desc}</p>
-            <span>${book.price}</span>
-            <button className="delete" onClick={() => delete_handler(book.id)}>Remove</button>
+      <h1>Soma Assets collection</h1>
+      <div className="Assets">
+        {Assets.map((Asset) => (
+          <div key={Asset.id} className="Asset">
+            <img src={Asset.cover} alt="" />
+            <h2>{Asset.title}</h2>
+            <p>{Asset.desc}</p>
+            <span>${Asset.price}</span>
+            <button className="delete" onClick={() => delete_handler(Asset.id)}>Remove</button>
             <button className="update">
               <Link
-                to={`/update/${book.id}`}
+                to={`/update/${Asset.id}`}
                 style={{ color: "inherit", textDecoration: "none" }}
               >
                 Update
@@ -55,10 +55,10 @@ const Books = () => {
 
       <button className="addHome">
         <Link to="/add" style={{ color: "inherit", textDecoration: "none" }}>
-          Add new book
+          Add new Asset
         </Link>
       </button>
     </div>
   );
 };
-export default Books
+export default Assets

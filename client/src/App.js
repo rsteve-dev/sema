@@ -1,7 +1,7 @@
 import {BrowserRouter,Routes,Route} from "react-router-dom";
-import Books from "./components/Books";
-import AddBook from "./components/AddBook";
-import UpdateBook from "./components/UpdateBook";
+import Asset from "./components/Asset";
+import AddAsset from "./components/AddAsset";
+import UpdateAsset from "./components/UpdateAssets";
 import "./style.css"
 
 function App() {
@@ -9,9 +9,9 @@ function App() {
     <div className="app">
        <BrowserRouter>
         <Routes>
-          <Route path="/" element={<Books/>}/>
-          <Route path="/add" element={<AddBook/>}/>
-          <Route path="/update" element={<UpdateBook/>}/>
+          <Route path="/" element={<Asset/>}/>
+          <Route path="/add" element={<AddAsset/>}/>
+          <Route path="/update" element={<UpdateAsset/>}/>
         </Routes>
        </BrowserRouter>
     </div>
